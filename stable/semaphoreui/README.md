@@ -6,23 +6,20 @@ Modern and open-source alternative to AWX/Tower
 
 **Homepage:** <https://semaphoreui.com/>
 
-**This chart is not maintained by the upstream project and any issues with the
-chart should be raised [here](https://github.com/semaphoreui/semaphore-charts/issues/new)**
-
 ## Installing the Chart
 
 ### OCI (Recommended)
 
 ```console
-helm install semaphoreui oci://ghcr.io/semaphoreui/semaphore-charts/semaphoreui
+helm install semaphoreui oci://ghcr.io/semaphoreui/charts/semaphore
 ```
 
 ### Traditional
 
 ```console
-helm repo add cloudhippie https://cloudhippie.github.io/charts
+helm repo add semaphore https://semaphoreui.github.io/charts
 helm repo update
-helm install semaphoreui cloudhippie/semaphoreui
+helm install semaphore semaphoreui/semaphore
 ```
 
 ## Example for Values
