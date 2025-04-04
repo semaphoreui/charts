@@ -1,6 +1,6 @@
 # Semaphore UI Charts
 
-[![Release Build](https://github.com/semaphoreui/semaphore-charts/actions/workflows/release.yml/badge.svg)](https://github.com/semaphoreui/semaphore-charts/actions/workflows/release.yml) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/cloudhippie)](https://artifacthub.io/packages/search?repo=cloudhippie)
+[![Release Build](https://github.com/semaphoreui/charts/actions/workflows/release.yml/badge.svg)](https://github.com/semaphoreui/charts/actions/workflows/release.yml) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/cloudhippie)](https://artifacthub.io/packages/search?repo=cloudhippie)
 
 Definition and publishing of Helm charts to install tools used by Cloudhippie or
 tools built within our GitHub organization.

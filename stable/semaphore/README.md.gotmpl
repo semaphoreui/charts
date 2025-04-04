@@ -8,14 +8,14 @@
 {{ template "chart.homepageLine" . }}
 
 **This chart is not maintained by the upstream project and any issues with the
-chart should be raised [here](https://github.com/semaphoreui/semaphore-charts/issues/new)**
+chart should be raised [here](https://github.com/semaphoreui/charts/issues/new)**
 
 ## Installing the Chart
 
 ### OCI (Recommended)
 
 ```console
-helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/semaphore-charts/{{ template "chart.name" . }}
+helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }}
 ```
 
 ### Traditional

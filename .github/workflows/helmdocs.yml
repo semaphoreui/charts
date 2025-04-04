@@ -13,7 +13,7 @@ permissions:
 jobs:
   helmdocs:
     runs-on: ubuntu-latest
-    if: github.repository == 'semaphoreui/semaphore-charts'
+    if: github.repository == 'semaphoreui/charts'
 
     steps:
       - name: Checkout source

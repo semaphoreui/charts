@@ -1,4 +1,4 @@
-module github.com/semaphoreui/semaphore-charts
+module github.com/semaphoreui/charts
 
 go 1.24.1
 
