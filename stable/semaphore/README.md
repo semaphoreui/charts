@@ -17,9 +17,9 @@ helm install semaphoreui oci://ghcr.io/semaphoreui/charts/semaphoreui
 ### Traditional
 
 ```console
-helm repo add semaphore https://semaphoreui.github.io/charts
+helm repo add semaphoreui https://semaphoreui.github.io/charts
 helm repo update
-helm install semaphore semaphoreui/semaphore
+helm install semaphoreui semaphoreui/semaphoreui
 ```
 
 ## Example for Values
