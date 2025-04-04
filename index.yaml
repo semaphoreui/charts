@@ -1,0 +1,46 @@
+apiVersion: v1
+entries:
+  semaphoreui:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/semaphoreui/semaphore
+        - name: Chart
+          url: https://github.com/semaphoreui/charts/tree/master/stable/semaphore
+      artifacthub.io/signKey: |
+        fingerprint: 2B62F542C0C5614F8B4625AE0DDA0DEB51EF789C
+        url: https://raw.githubusercontent.com/semaphoreui/charts/master/cloudhippie.key
+    apiVersion: v2
+    appVersion: 2.13.7
+    created: "2025-04-04T05:53:34.433341728Z"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 20.4.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 16.6.0
+    description: Modern and open-source alternative to AWX/Tower
+    digest: 7a7288cd74e36d3bf54ca10b13bb1c2d38cb5c03c43c511e27c86b7d51e4b345
+    home: https://semaphoreui.com/
+    icon: https://raw.githubusercontent.com/semaphoreui/semaphore/develop/web/public/favicon.svg
+    keywords:
+    - ansible
+    - awx
+    - tower
+    - semaphore
+    maintainers:
+    - email: thomas@webhippie.de
+      name: tboerger
+      url: https://github.com/tboerger
+    name: semaphoreui
+    sources:
+    - https://github.com/semaphoreui/semaphore
+    type: application
+    urls:
+    - https://github.com/semaphoreui/charts/releases/download/semaphoreui-2.13.7/semaphoreui-2.13.7.tgz
+    version: 2.13.7
+generated: "2025-04-04T05:53:34.433370809Z"
