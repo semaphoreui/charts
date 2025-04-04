@@ -4,7 +4,7 @@ annotations:
     - name: Source
       url: https://github.com/semaphoreui/semaphore
     - name: Chart
-      url: https://github.com/semaphoreui/semaphore-charts/tree/master/stable/semaphoreui
+      url: https://github.com/semaphoreui/semaphore-charts/tree/master/stable/semaphore
   artifacthub.io/signKey: |
     fingerprint: 2B62F542C0C5614F8B4625AE0DDA0DEB51EF789C
     url: https://raw.githubusercontent.com/semaphoreui/semaphore-charts/master/cloudhippie.key
@@ -26,6 +26,7 @@ keywords:
 - ansible
 - awx
 - tower
+- semaphore
 maintainers:
 - email: thomas@webhippie.de
   name: tboerger

@@ -11,7 +11,7 @@ Modern and open-source alternative to AWX/Tower
 ### OCI (Recommended)
 
 ```console
-helm install semaphoreui oci://ghcr.io/semaphoreui/charts/semaphore
+helm install semaphoreui oci://ghcr.io/semaphoreui/charts/semaphoreui
 ```
 
 ### Traditional
