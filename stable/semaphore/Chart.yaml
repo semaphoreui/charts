@@ -19,7 +19,7 @@ dependencies:
   name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 16.6.0
-description: Modern and open-source alternative to AWX/Tower
+description: Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell and other DevOps tools
 home: https://semaphoreui.com/
 icon: https://raw.githubusercontent.com/semaphoreui/semaphore/develop/web/public/favicon.svg
 keywords:
