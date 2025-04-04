@@ -5,7 +5,7 @@ name: automerge
   workflow_dispatch:
   pull_request:
     branches:
-      - master
+      - main
 
 permissions:
   contents: write

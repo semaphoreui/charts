@@ -5,7 +5,7 @@ name: release
   workflow_dispatch:
   push:
     branches:
-      - master
+      - main
 
 permissions:
   contents: write

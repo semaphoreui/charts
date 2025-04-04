@@ -4,10 +4,10 @@ annotations:
     - name: Source
       url: https://github.com/semaphoreui/semaphore
     - name: Chart
-      url: https://github.com/semaphoreui/charts/tree/master/stable/semaphore
+      url: https://github.com/semaphoreui/charts/tree/main/stable/semaphore
   artifacthub.io/signKey: |
     fingerprint: 2B62F542C0C5614F8B4625AE0DDA0DEB51EF789C
-    url: https://raw.githubusercontent.com/semaphoreui/charts/master/cloudhippie.key
+    url: https://raw.githubusercontent.com/semaphoreui/charts/main/semaphore.key
 apiVersion: v2
 appVersion: 2.13.7
 dependencies:

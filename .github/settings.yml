@@ -1,16 +1,16 @@
 ---
 repository:
   name: charts
-  description: Helm charts used by our services
-  homepage: https://cloudhippie.de
-  topics: cloudhippie, helm, charts
+  description: Helm charts for Semaphore UI
+  homepage: https://semaphoreui.com
+  topics: semaphore, helm, charts
 
   private: false
   has_issues: true
   has_wiki: false
   has_downloads: false
 
-  default_branch: master
+  default_branch: main
 
   allow_merge_commit: false
   allow_squash_merge: true
