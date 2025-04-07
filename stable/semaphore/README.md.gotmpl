@@ -23,9 +23,16 @@ helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ t
 
 ## Example for Values
 
+### Create admin user
+```yml
+admin:
+  create: true
+  password: MTUwOTg2
+```
+
 ### Ingress Enabled
 
-```console
+```yml
 ingress:
   enabled: false
 
@@ -45,9 +52,7 @@ database:
   host: mariadb
   port: 3306
 
-  usernameFromSecret: false
-  passwordKey: mariadb-password
-  existingSecret: mariadb
+  password: p455w0rd
 
 mariadb:
   enabled: true
