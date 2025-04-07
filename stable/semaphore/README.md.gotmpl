@@ -21,9 +21,9 @@ helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ t
 ### Traditional
 
 ```console
-helm repo add cloudhippie https://cloudhippie.github.io/charts
+helm repo add semaphoreui https://semaphoreui.github.io/charts
 helm repo update
-helm install {{ template "chart.name" . }} cloudhippie/{{ template "chart.name" . }}
+helm install {{ template "chart.name" . }} semaphoreui/{{ template "chart.name" . }}
 ```
 
 ## Example for Values

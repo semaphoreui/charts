@@ -99,7 +99,7 @@ oidc:
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| tboerger | <thomas@webhippie.de> | <https://github.com/tboerger> |
+| Denis Gukov | <denis@semaphoreui.com> | <https://github.com/fiftin> |
 
 ## Source Code
 

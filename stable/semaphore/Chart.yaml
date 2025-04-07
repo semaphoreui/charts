@@ -28,9 +28,9 @@ keywords:
 - tower
 - semaphore
 maintainers:
-- email: thomas@webhippie.de
-  name: tboerger
-  url: https://github.com/tboerger
+- email: denis@semaphoreui.com
+  name: Denis Gukov
+  url: https://github.com/fiftin
 name: semaphoreui
 sources:
 - https://github.com/semaphoreui/semaphore
