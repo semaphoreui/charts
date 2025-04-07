@@ -7,20 +7,17 @@
 
 {{ template "chart.homepageLine" . }}
 
-**This chart is not maintained by the upstream project and any issues with the
-chart should be raised [here](https://github.com/semaphoreui/charts/issues/new)**
-
 ## Installing the Chart
 
 ### OCI (Recommended)
 
-For open-source version:
+**For open-source version:**
 
 ```console
 helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }}
 ```
 
-For Pro version:
+**For Pro version:**
 
 ```console
 helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }} --set image.repository=public.ecr.aws/semaphore/pro/server
