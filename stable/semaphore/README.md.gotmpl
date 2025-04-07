@@ -9,8 +9,6 @@
 
 ## Installing the Chart
 
-### OCI (Recommended)
-
 **For open-source version:**
 
 ```console
@@ -21,16 +19,6 @@ helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ t
 
 ```console
 helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }} --set image.repository=public.ecr.aws/semaphore/pro/server
-```
-
-
-
-### Traditional
-
-```console
-helm repo add semaphoreui https://semaphoreui.github.io/charts
-helm repo update
-helm install {{ template "chart.name" . }} semaphoreui/{{ template "chart.name" . }}
 ```
 
 ## Example for Values
