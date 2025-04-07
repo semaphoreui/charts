@@ -35,5 +35,5 @@ name: semaphoreui
 sources:
 - https://github.com/semaphoreui/semaphore
 type: application
-version: 14.0.5
+version: 14.0.6
 deprecated: true
