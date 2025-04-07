@@ -143,6 +143,50 @@ entries:
         url: https://raw.githubusercontent.com/semaphoreui/charts/main/semaphore.key
     apiVersion: v2
     appVersion: 2.13.10
+    created: "2025-04-07T18:13:45.367726804Z"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 20.4.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 16.6.0
+    deprecated: true
+    description: Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell
+      and other DevOps tools
+    digest: 1aafbe7e82289d1bfe67ee0f7a36ce05ed3010062f89abceccb855ec49508110
+    home: https://semaphoreui.com/
+    icon: https://raw.githubusercontent.com/semaphoreui/semaphore/develop/web/public/favicon.svg
+    keywords:
+    - ansible
+    - awx
+    - tower
+    - semaphore
+    maintainers:
+    - email: denis@semaphoreui.com
+      name: Denis Gukov
+      url: https://github.com/fiftin
+    name: semaphoreui
+    sources:
+    - https://github.com/semaphoreui/semaphore
+    type: application
+    urls:
+    - https://github.com/semaphoreui/charts/releases/download/semaphoreui-14.0.6/semaphoreui-14.0.6.tgz
+    version: 14.0.6
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/semaphoreui/semaphore
+        - name: Chart
+          url: https://github.com/semaphoreui/charts/tree/main/stable/semaphore
+      artifacthub.io/signKey: |
+        fingerprint: 2B62F542C0C5614F8B4625AE0DDA0DEB51EF789C
+        url: https://raw.githubusercontent.com/semaphoreui/charts/main/semaphore.key
+    apiVersion: v2
+    appVersion: 2.13.10
     created: "2025-04-07T14:42:05.437813046Z"
     dependencies:
     - condition: mariadb.enabled
@@ -432,4 +476,4 @@ entries:
     urls:
     - https://github.com/semaphoreui/charts/releases/download/semaphoreui-1.0.0/semaphoreui-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-07T14:42:05.437855685Z"
+generated: "2025-04-07T18:13:45.367786936Z"
