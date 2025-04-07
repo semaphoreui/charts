@@ -1,4 +1,103 @@
 {{ template "chart.header" . }}
 {{ template "chart.deprecationWarning" . }}
 
-## Package moved to [semaphoreui/semaphore](https://artifacthub.io/packages/helm/semaphoreui/semaphore).
+{{ template "chart.badgesSection" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.homepageLine" . }}
+
+## Installing the Chart
+
+**For open-source version:**
+
+```console
+helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }}
+```
+
+**For Pro version:**
+
+```console
+helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }} --set image.repository=public.ecr.aws/semaphore/pro/server
+```
+
+## Example for Values
+
+### Ingress Enabled
+
+```console
+ingress:
+  enabled: false
+
+  hosts:
+    - host: {{ template "chart.name" . }}.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+```
+
+### Bundled MariaDB
+
+```console
+database:
+  type: mysql
+
+  host: mariadb
+  port: 3306
+
+  usernameFromSecret: false
+  passwordKey: mariadb-password
+  existingSecret: mariadb
+
+mariadb:
+  enabled: true
+
+  auth:
+    password: p455w0rd
+```
+
+### Bundled PostgreSQL
+
+```console
+database:
+  type: postgres
+
+  host: postgresql
+  port: 5432
+
+  usernameFromSecret: false
+  passwordKey: password
+  existingSecret: postgresql
+
+postgresql:
+  enabled: true
+
+  auth:
+    password: p455w0rd
+```
+
+### OpenID Connect
+
+```console
+oidc:
+  enable: true
+
+  providers:
+    keycloak:
+      display_name: Keycloak
+      provider_url: https://auth.example.com/auth/realms/example
+      redirect_url: https://semaphore.example.com/api/auth/oidc/keycloak/redirect
+      client_id: semaphore
+      client_secret: 0208901c-ecd7-46ae-931a-d03f02e8dcd2
+      username_claim: preferred_username
+      name_claim: preferred_username
+      email_claim: email
+```
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}

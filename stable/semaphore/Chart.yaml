@@ -31,9 +31,8 @@ maintainers:
 - email: denis@semaphoreui.com
   name: Denis Gukov
   url: https://github.com/fiftin
-name: semaphoreui
+name: semaphore
 sources:
 - https://github.com/semaphoreui/semaphore
 type: application
-version: 14.0.6
-deprecated: true
+version: 14.0.7
