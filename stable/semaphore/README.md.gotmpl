@@ -14,9 +14,19 @@ chart should be raised [here](https://github.com/semaphoreui/charts/issues/new)*
 
 ### OCI (Recommended)
 
+For open-source version:
+
 ```console
 helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }}
 ```
+
+For Pro version:
+
+```console
+helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }} --set image.repository=public.ecr.aws/semaphore/pro/server
+```
+
+
 
 ### Traditional
 

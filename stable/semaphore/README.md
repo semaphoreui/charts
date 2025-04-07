@@ -10,8 +10,16 @@ Modern and open-source alternative to AWX/Tower
 
 ### OCI (Recommended)
 
+**For open-source version:**
+
 ```console
 helm install semaphore oci://ghcr.io/semaphoreui/charts/semaphore
+```
+
+**For Pro vesion:**
+
+```console
+helm install semaphore oci://ghcr.io/semaphoreui/charts/semaphore --set image.repository=public.ecr.aws/semaphore/pro/server
 ```
 
 ### Traditional
