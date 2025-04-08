@@ -18,7 +18,7 @@ jobs:
         id: source
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_ACCESS_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Install nix
         id: nix
@@ -35,8 +35,8 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          author_name: GitHub Actions
-          author_email: github@cloudhippie.de
+          author_name: Denis Gukov
+          author_email: denguk@gmail.com
           add: flake.lock
           message: "chore(flake): updated lockfile [skip ci]"
           push: true
