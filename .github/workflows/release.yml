@@ -56,6 +56,19 @@ jobs:
           config: cr.yaml
           charts_dir: stable
 
+      - name: Push charts
+        run: |
+          echo "${{ secrets.GH_TOKEN }}" | helm registry login --username fiftin --password-stdin ghcr.io
+
+          for pkg in .cr-release-packages/*.tgz; do
+            if [ -z "${pkg:-}" ]; then
+              break
+            fi
+
+            echo "Pushing $pkg..."
+            helm push "$pkg" "oci://ghcr.io/$GITHUB_REPOSITORY_OWNER/charts"
+          done
+
       - name: Remove secrets
         if: always()
         run: |
