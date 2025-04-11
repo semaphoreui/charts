@@ -1,6 +1,6 @@
-# semaphore
+# Semaphore UI official chart
 
-![Version: 14.0.12](https://img.shields.io/badge/Version-14.0.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.13.12](https://img.shields.io/badge/AppVersion-2.13.12-informational?style=flat-square)
+![Version: 14.0.13](https://img.shields.io/badge/Version-14.0.13-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.13.12](https://img.shields.io/badge/AppVersion-2.13.12-informational?style=flat-square)
 
 Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell and other DevOps tools
 
@@ -25,7 +25,7 @@ helm install semaphore semaphoreui/semaphore
 helm install semaphore semaphoreui/semaphore
 ```
 
-## Installing OCI from GitHub Container Registry
+## Installing OCI from GitHub Container Registry (GitHub authentication required)
 
 **Open-source version:**
 
