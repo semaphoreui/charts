@@ -1,6 +1,6 @@
 # semaphore
 
-![Version: 14.0.10](https://img.shields.io/badge/Version-14.0.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.13.12](https://img.shields.io/badge/AppVersion-2.13.12-informational?style=flat-square)
+![Version: 14.0.11](https://img.shields.io/badge/Version-14.0.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.13.12](https://img.shields.io/badge/AppVersion-2.13.12-informational?style=flat-square)
 
 Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell and other DevOps tools
 
