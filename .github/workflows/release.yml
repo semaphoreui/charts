@@ -66,7 +66,7 @@ jobs:
             fi
 
             echo "Pushing $pkg..."
-            helm push "$pkg" oci://docker.io/semaphoreui/charts"
+            helm push "$pkg" oci://docker.io/semaphoreui/charts
           done
 
       - name: Remove secrets
