@@ -1,6 +1,6 @@
 # semaphore
 
-![Version: 14.0.11](https://img.shields.io/badge/Version-14.0.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.13.12](https://img.shields.io/badge/AppVersion-2.13.12-informational?style=flat-square)
+![Version: 14.0.12](https://img.shields.io/badge/Version-14.0.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.13.12](https://img.shields.io/badge/AppVersion-2.13.12-informational?style=flat-square)
 
 Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell and other DevOps tools
 
@@ -8,13 +8,32 @@ Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell and othe
 
 ## Installing the Chart
 
-**For open-source version:**
+```console
+helm repo add semaphoreui https://semaphoreui.github.io/charts
+helm repo update
+```
+
+**Open-source version:**
+
+```console
+helm install semaphore semaphoreui/semaphore
+```
+
+**Pro version:**
+
+```console
+helm install semaphore semaphoreui/semaphore
+```
+
+## Installing OCI from GitHub Container Registry
+
+**Open-source version:**
 
 ```console
 helm install semaphore oci://ghcr.io/semaphoreui/charts/semaphore
 ```
 
-**For Pro version:**
+**Pro version:**
 
 ```console
 helm install semaphore oci://ghcr.io/semaphoreui/charts/semaphore --set image.repository=public.ecr.aws/semaphore/pro/server
