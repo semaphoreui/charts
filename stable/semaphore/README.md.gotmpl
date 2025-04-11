@@ -9,13 +9,32 @@
 
 ## Installing the Chart
 
-**For open-source version:**
+```console
+helm repo add semaphoreui https://semaphoreui.github.io/charts
+helm repo update
+```
+
+**Open-source version:**
+
+```console
+helm install {{ template "chart.name" . }} semaphoreui/{{ template "chart.name" . }}
+```
+
+**Pro version:**
+
+```console
+helm install {{ template "chart.name" . }} semaphoreui/{{ template "chart.name" . }}
+```
+
+## Installing OCI from GitHub Container Registry
+
+**Open-source version:**
 
 ```console
 helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }}
 ```
 
-**For Pro version:**
+**Pro version:**
 
 ```console
 helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ template "chart.name" . }} --set image.repository=public.ecr.aws/semaphore/pro/server
