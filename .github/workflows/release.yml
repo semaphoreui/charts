@@ -56,19 +56,6 @@ jobs:
           config: cr.yaml
           charts_dir: stable
 
-      - name: Push charts
-        run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | helm registry login -u "${{ secrets.DOCKER_USER }}" --password-stdin registry-1.docker.io
-
-          for pkg in .cr-release-packages/*.tgz; do
-            if [ -z "${pkg:-}" ]; then
-              break
-            fi
-
-            echo "Pushing $pkg..."
-            helm push "$pkg" oci://registry-1.docker.io/semaphoreui
-          done
-
       - name: Remove secrets
         if: always()
         run: |
