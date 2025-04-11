@@ -58,7 +58,7 @@ jobs:
 
       - name: Push charts
         run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | helm registry login -u "${{ secrets.DOCKER_USER }}" --password-stdin registry-1.docker.io
+          echo "${{ secrets.DOCKER_PASSWORD }}" | helm registry login -u "${{ secrets.DOCKER_USER }}" --password-stdin docker.io
 
           for pkg in .cr-release-packages/*.tgz; do
             if [ -z "${pkg:-}" ]; then
@@ -66,7 +66,7 @@ jobs:
             fi
 
             echo "Pushing $pkg..."
-            helm push "$pkg" "oci://registry-1.docker.io/semaphoreui/charts"
+            helm push "$pkg" oci://docker.io/semaphoreui/charts"
           done
 
       - name: Remove secrets
