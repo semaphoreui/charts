@@ -24,7 +24,7 @@ helm install {{ template "chart.name" . }} semaphoreui/{{ template "chart.name" 
 **Pro version:**
 
 ```console
-helm install {{ template "chart.name" . }} semaphoreui/{{ template "chart.name" . }}
+helm install {{ template "chart.name" . }} semaphoreui/{{ template "chart.name" . }} --set image.repository=public.ecr.aws/semaphore/pro/server
 ```
 
 ## Installing OCI from GitHub Container Registry (GitHub authentication required)

@@ -9,7 +9,7 @@ annotations:
     fingerprint: 2B62F542C0C5614F8B4625AE0DDA0DEB51EF789C
     url: https://raw.githubusercontent.com/semaphoreui/charts/main/semaphore.key
 apiVersion: v2
-appVersion: 2.13.12
+appVersion: 2.13.14
 dependencies:
 - condition: mariadb.enabled
   name: mariadb
@@ -35,4 +35,4 @@ name: semaphore
 sources:
 - https://github.com/semaphoreui/semaphore
 type: application
-version: 14.0.13
+version: 14.0.14
