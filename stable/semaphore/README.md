@@ -1,6 +1,6 @@
 # Semaphore UI official chart
 
-![Version: 15.1.4](https://img.shields.io/badge/Version-15.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.14.8](https://img.shields.io/badge/AppVersion-2.14.8-informational?style=flat-square)
+![Version: 15.1.5](https://img.shields.io/badge/Version-15.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.14.8](https://img.shields.io/badge/AppVersion-2.14.8-informational?style=flat-square)
 
 Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell and other DevOps tools
 
@@ -196,7 +196,7 @@ oidc:
 | general.maxParallelTasks | int | `0` | Maximum parallel tasks |
 | general.nonAdminCanCreateProject | bool | `false` | Allow non-admins to create projects |
 | general.passwordLoginDisable | bool | `false` | Disable password login |
-| general.sshConfigPath | string | `""` | Path to SSH config |
+| general.sshConfigPath | string | `nil` | Path to SSH config |
 | general.tmpPath | string | `"/tmp/semaphore"` | Working directory for Semaphore |
 | general.useRemoteRunner | bool | `false` | Enable usage of remote runners |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
