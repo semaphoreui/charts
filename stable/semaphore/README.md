@@ -41,12 +41,15 @@ helm install semaphore oci://ghcr.io/semaphoreui/charts/semaphore --set image.re
 
 ## Example for Values
 
-### Create admin user
+### Create `admin` user
+
 ```yml
 admin:
   create: true
   password: changeme
 ```
+
+After installtion you can login with username `admin` and password `changeme`.
 
 ### Ingress Enabled
 
