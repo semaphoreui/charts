@@ -43,12 +43,15 @@ helm install {{ template "chart.name" . }} oci://ghcr.io/semaphoreui/charts/{{ t
 
 ## Example for Values
 
-### Create admin user
+### Create `admin` user
+
 ```yml
 admin:
   create: true
   password: changeme
 ```
+
+After installtion you can login with username `admin` and password `changeme`.
 
 ### Ingress Enabled
 
