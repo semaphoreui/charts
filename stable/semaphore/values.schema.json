@@ -69,7 +69,7 @@
           "description": "Enable usage of remote runners"
         },
         "sshConfigPath": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Path to SSH config"
         },
         "additionalPythonPackages": {
