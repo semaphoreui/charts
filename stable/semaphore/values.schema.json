@@ -1,166 +1,168 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
   "type": "object",
-  "secrets": {
+  "properties": {
+    "secrets": {
       "type": "object",
       "properties": {
-          "cookieHash": {
-              "type": ["string", "null"],
-              "description": "Cookie hash secret, generated if not present"
-          },
-          "cookieHashKey": {
-              "type": ["string", "null"],
-              "description": "Key used within secret for cookieHash"
-          },
-          "cookieEncryption": {
-              "type": ["string", "null"],
-              "description": "Cookie encryption secret, generated if not present"
-          },
-          "cookieEncryptionKey": {
-              "type": "string",
-              "description": "Key used within secret for cookieEncryption"
-          },
-          "accesskeyEncryption": {
-              "type": ["string", "null"],
-              "description": "Access key encryption secret, generated if not present"
-          },
-          "accesskeyEncryptionKey": {
-              "type": "string",
-              "description": "Key used within secret for accesskeyEncryption"
-          },
-          "existingSecret": {
-              "type": ["string", "null"],
-              "description": "Existing secret to use for secrets"
-          }
+        "cookieHash": {
+          "type": ["string", "null"],
+          "description": "Cookie hash secret, generated if not present"
+        },
+        "cookieHashKey": {
+          "type": ["string", "null"],
+          "description": "Key used within secret for cookieHash"
+        },
+        "cookieEncryption": {
+          "type": ["string", "null"],
+          "description": "Cookie encryption secret, generated if not present"
+        },
+        "cookieEncryptionKey": {
+          "type": "string",
+          "description": "Key used within secret for cookieEncryption"
+        },
+        "accesskeyEncryption": {
+          "type": ["string", "null"],
+          "description": "Access key encryption secret, generated if not present"
+        },
+        "accesskeyEncryptionKey": {
+          "type": "string",
+          "description": "Key used within secret for accesskeyEncryption"
+        },
+        "existingSecret": {
+          "type": ["string", "null"],
+          "description": "Existing secret to use for secrets"
+        }
       }
-  },
-  "general": {
+    },
+    "general": {
       "type": "object",
       "properties": {
-          "host": {
+        "host": {
+          "type": ["string", "null"],
+          "description": "Host to access Semaphore"
+        },
+        "gitClient": {
+          "type": "string",
+          "enum": ["cmd_git", "go_git"],
+          "description": "Use Git client implementation"
+        },
+        "tmpPath": {
+          "type": "string",
+          "description": "Working directory for Semaphore"
+        },
+        "maxParallelTasks": {
+          "type": "integer",
+          "description": "Maximum parallel tasks",
+          "minimum": 0
+        },
+        "passwordLoginDisable": {
+          "type": "boolean",
+          "description": "Disable password login"
+        },
+        "nonAdminCanCreateProject": {
+          "type": "boolean",
+          "description": "Allow non-admins to create projects"
+        },
+        "useRemoteRunner": {
+          "type": "boolean",
+          "description": "Enable usage of remote runners"
+        },
+        "sshConfigPath": {
+          "type": "string",
+          "description": "Path to SSH config"
+        },
+        "additionalPythonPackages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Additional Python packages"
+        }
+      }
+    },
+    "database": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["bolt", "mysql", "postgres"],
+          "description": "Type of database backend"
+        },
+        "usernameFromSecret": {
+          "type": "boolean",
+          "description": "Read username from secret"
+        },
+        "username": {
+          "type": "string",
+          "description": "Username for database"
+        },
+        "usernameKey": {
+          "type": "string",
+          "description": "Key used within secret for username"
+        },
+        "password": {
+          "type": ["string", "null"],
+          "description": "Password for database"
+        },
+        "passwordKey": {
+          "type": "string",
+          "description": "Key used within secret for password"
+        },
+        "existingSecret": {
+          "type": ["string", "null"],
+          "description": "Existing secret to use for credentials"
+        },
+        "host": {
+          "type": ["string", "null"],
+          "description": "Host for database connection"
+        },
+        "port": {
+          "type": ["integer", "null"],
+          "description": "Port for database connection"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the used database"
+        },
+        "options": {
+          "type": "object",
+          "description": "Options for database connection"
+        },
+        "path": {
+          "type": "string",
+          "description": "Path for the boltdb"
+        },
+        "persistence": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable persistence for boltdb"
+            },
+            "size": {
+              "type": "string",
+              "description": "Size for boltdb volume"
+            },
+            "storageClass": {
               "type": ["string", "null"],
-              "description": "Host to access Semaphore"
-          },
-          "gitClient": {
-              "type": "string",
-              "enum": ["cmd_git", "go_git"],
-              "description": "Use Git client implementation"
-          },
-          "tmpPath": {
-              "type": "string",
-              "description": "Working directory for Semaphore"
-          },
-          "maxParallelTasks": {
-              "type": "integer",
-              "description": "Maximum parallel tasks",
-              "minimum": 0
-          },
-          "passwordLoginDisable": {
-              "type": "boolean",
-              "description": "Disable password login"
-          },
-          "nonAdminCanCreateProject": {
-              "type": "boolean",
-              "description": "Allow non-admins to create projects"
-          },
-          "useRemoteRunner": {
-              "type": "boolean",
-              "description": "Enable usage of remote runners"
-          },
-          "sshConfigPath": {
-              "type": "string",
-              "description": "Path to SSH config"
-          },
-          "additionalPythonPackages": {
+              "description": "Storage class used for boltdb volume"
+            },
+            "accessModes": {
               "type": "array",
               "items": {
-                  "type": "string"
+                "type": "string",
+                "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany"]
               },
-              "description": "Additional Python packages"
+              "description": "Access modes used for boltdb volume"
+            },
+            "existingClaim": {
+              "type": ["string", "null"],
+              "description": "Name of an already existing claim"
+            }
           }
+        }
       }
-  },
-  "database": {
-      "type": "object",
-      "properties": {
-          "type": {
-              "type": "string",
-              "enum": ["bolt", "mysql", "postgres"],
-              "description": "Type of database backend"
-          },
-          "usernameFromSecret": {
-              "type": "boolean",
-              "description": "Read username from secret"
-          },
-          "username": {
-              "type": "string",
-              "description": "Username for database"
-          },
-          "usernameKey": {
-              "type": "string",
-              "description": "Key used within secret for username"
-          },
-          "password": {
-              "type": ["string", "null"],
-              "description": "Password for database"
-          },
-          "passwordKey": {
-              "type": "string",
-              "description": "Key used within secret for password"
-          },
-          "existingSecret": {
-              "type": ["string", "null"],
-              "description": "Existing secret to use for credentials"
-          },
-          "host": {
-              "type": ["string", "null"],
-              "description": "Host for database connection"
-          },
-          "port": {
-              "type": ["integer", "null"],
-              "description": "Port for database connection"
-          },
-          "name": {
-              "type": "string",
-              "description": "Name of the used database"
-          },
-          "options": {
-              "type": "object",
-              "description": "Options for database connection"
-          },
-          "path": {
-              "type": "string",
-              "description": "Path for the boltdb"
-          },
-          "persistence": {
-              "type": "object",
-              "properties": {
-                  "enabled": {
-                      "type": "boolean",
-                      "description": "Enable persistence for boltdb"
-                  },
-                  "size": {
-                      "type": "string",
-                      "description": "Size for boltdb volume"
-                  },
-                  "storageClass": {
-                      "type": ["string", "null"],
-                      "description": "Storage class used for boltdb volume"
-                  },
-                  "accessModes": {
-                      "type": "array",
-                      "items": {
-                          "type": "string",
-                          "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany"]
-                      },
-                      "description": "Access modes used for boltdb volume"
-                  },
-                  "existingClaim": {
-                      "type": ["string", "null"],
-                      "description": "Name of an already existing claim"
-                  }
-              }
-          }
-      }
+    }
   }
 }
