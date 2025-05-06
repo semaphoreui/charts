@@ -253,6 +253,7 @@
         },
         "gitClient": {
           "type": "string",
+          "enum": ["cmd_git", "go_git"],
           "description": "Use Git client implementation"
         },
         "tmpPath": {
