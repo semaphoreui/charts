@@ -1,0 +1,431 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "nameOverride": {
+      "type": "string",
+      "description": "Override the name"
+    },
+    "fullnameOverride": {
+      "type": "string",
+      "description": "Override the fullname"
+    },
+    "replicaCount": {
+      "type": "integer",
+      "description": "Replicas for the deployment",
+      "minimum": 1
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "description": "Image repository used by deployment"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Optional tag for the repository, defaults to app version"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "enum": ["Always", "IfNotPresent", "Never"],
+          "description": "Image pull policy"
+        },
+        "pullSecrets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional name of pull secret if using a private registry"
+        }
+      },
+      "required": ["repository"]
+    },
+    "serviceAccount": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "description": "Create a new service account"
+        },
+        "name": {
+          "type": "string",
+          "description": "Optional name for an existing service account"
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Define annotations for the service account"
+        }
+      }
+    },
+    "updateStrategy": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["Recreate", "RollingUpdate"],
+          "description": "Update strategy for deployment"
+        }
+      }
+    },
+    "labels": {
+      "type": "object",
+      "description": "Define additional labels"
+    },
+    "annotations": {
+      "type": "object",
+      "description": "Define additional annotations"
+    },
+    "securityContext": {
+      "type": "object",
+      "properties": {
+        "fsGroup": {
+          "type": "integer",
+          "description": "Security context for the deployment"
+        }
+      }
+    },
+    "podSecurityContext": {
+      "type": "object",
+      "description": "Security context for the pod"
+    },
+    "extraInitContainers": {
+      "type": "array",
+      "description": "List of extra init containers"
+    },
+    "extraSidecarContainers": {
+      "type": "array",
+      "description": "List of extra sidecar containers"
+    },
+    "extraVolumes": {
+      "type": "array",
+      "description": "List of extra volumes"
+    },
+    "extraVolumeMounts": {
+      "type": "array",
+      "description": "List of extra volume mounts"
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["ClusterIP", "NodePort", "LoadBalancer", "ExternalName"],
+          "description": "Type of the service"
+        },
+        "port": {
+          "type": "integer",
+          "description": "Port of the service"
+        },
+        "internalPort": {
+          "type": "integer",
+          "description": "Internal port of the service"
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Additional annotations for the service"
+        },
+        "labels": {
+          "type": "object",
+          "description": "Additional labels for the service"
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable ingress"
+        },
+        "className": {
+          "type": "string",
+          "description": "Class name for the ingress resource"
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string",
+                      "enum": ["Prefix", "Exact", "ImplementationSpecific"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tls": {
+          "type": "array",
+          "description": "Optional TLS configuration for ingress"
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Additional annotations for the ingress"
+        },
+        "labels": {
+          "type": "object",
+          "description": "Additional labels for the ingress"
+        }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable persistence for workdir"
+        },
+        "size": {
+          "type": "string",
+          "description": "Size for boltdb volume"
+        },
+        "storageClass": {
+          "type": "string",
+          "description": "Storage class used for workdir volume"
+        },
+        "accessModes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany"]
+          },
+          "description": "Access modes used for workdir volume"
+        },
+        "existingClaim": {
+          "type": "string",
+          "description": "Name of an already existing claim"
+        }
+      }
+    },
+    "secrets": {
+      "type": "object",
+      "properties": {
+        "cookieHash": {
+          "type": "string",
+          "description": "Cookie hash secret, generated if not present"
+        },
+        "cookieHashKey": {
+          "type": "string",
+          "description": "Key used within secret for cookieHash"
+        },
+        "cookieEncryption": {
+          "type": "string",
+          "description": "Cookie encryption secret, generated if not present"
+        },
+        "cookieEncryptionKey": {
+          "type": "string",
+          "description": "Key used within secret for cookieEncryption"
+        },
+        "accesskeyEncryption": {
+          "type": "string",
+          "description": "Access key encryption secret, generated if not present"
+        },
+        "accesskeyEncryptionKey": {
+          "type": "string",
+          "description": "Key used within secret for accesskeyEncryption"
+        },
+        "existingSecret": {
+          "type": "string",
+          "description": "Existing secret to use for secrets"
+        }
+      }
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "Host to access Semaphore"
+        },
+        "gitClient": {
+          "type": "string",
+          "description": "Use Git client implementation"
+        },
+        "tmpPath": {
+          "type": "string",
+          "description": "Working directory for Semaphore"
+        },
+        "maxParallelTasks": {
+          "type": "integer",
+          "description": "Maximum parallel tasks",
+          "minimum": 0
+        },
+        "passwordLoginDisable": {
+          "type": "boolean",
+          "description": "Disable password login"
+        },
+        "nonAdminCanCreateProject": {
+          "type": "boolean",
+          "description": "Allow non-admins to create projects"
+        },
+        "useRemoteRunner": {
+          "type": "boolean",
+          "description": "Enable usage of remote runners"
+        },
+        "sshConfigPath": {
+          "type": "string",
+          "description": "Path to SSH config"
+        },
+        "additionalPythonPackages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Additional Python packages"
+        }
+      }
+    },
+    "database": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["bolt", "mysql", "postgres"],
+          "description": "Type of database backend"
+        },
+        "usernameFromSecret": {
+          "type": "boolean",
+          "description": "Read username from secret"
+        },
+        "username": {
+          "type": "string",
+          "description": "Username for database"
+        },
+        "usernameKey": {
+          "type": "string",
+          "description": "Key used within secret for username"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password for database"
+        },
+        "passwordKey": {
+          "type": "string",
+          "description": "Key used within secret for password"
+        },
+        "existingSecret": {
+          "type": "string",
+          "description": "Existing secret to use for credentials"
+        },
+        "host": {
+          "type": "string",
+          "description": "Host for database connection"
+        },
+        "port": {
+          "type": "integer",
+          "description": "Port for database connection"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the used database"
+        },
+        "options": {
+          "type": "object",
+          "description": "Options for database connection"
+        },
+        "path": {
+          "type": "string",
+          "description": "Path for the boltdb"
+        },
+        "persistence": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable persistence for boltdb"
+            },
+            "size": {
+              "type": "string",
+              "description": "Size for boltdb volume"
+            },
+            "storageClass": {
+              "type": "string",
+              "description": "Storage class used for boltdb volume"
+            },
+            "accessModes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany"]
+              },
+              "description": "Access modes used for boltdb volume"
+            },
+            "existingClaim": {
+              "type": "string",
+              "description": "Name of an already existing claim"
+            }
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "limits": {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          }
+        },
+        "requests": {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "nodeSelector": {
+      "type": "object",
+      "description": "Node selector for the deployment"
+    },
+    "affinity": {
+      "type": "object",
+      "description": "Affinity for the deployment"
+    },
+    "tolerations": {
+      "type": "array",
+      "description": "Tolerations for the deployment"
+    },
+    "envFromSecrets": {
+      "type": "array",
+      "description": "List of environment variables from existing secrets"
+    },
+    "envFromConfigMaps": {
+      "type": "array",
+      "description": "List of environment variables from existing configmaps"
+    },
+    "extraEnvVariables": {
+      "type": "object",
+      "description": "Extra environment variables from mapping"
+    },
+    "extraEnvSecrets": {
+      "type": "object",
+      "description": "Extra environment variables from secrets"
+    }
+  }
+} 
