@@ -45,7 +45,7 @@ helm install semaphore oci://ghcr.io/semaphoreui/charts/semaphore --set image.re
 ```yml
 admin:
   create: true
-  password: MTUwOTg2
+  password: changeme
 ```
 
 ### Ingress Enabled
