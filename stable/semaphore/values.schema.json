@@ -139,7 +139,7 @@
           "description": "Enable ingress"
         },
         "className": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Class name for the ingress resource"
         },
         "hosts": {
@@ -194,7 +194,7 @@
           "description": "Size for boltdb volume"
         },
         "storageClass": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Storage class used for workdir volume"
         },
         "accessModes": {
@@ -206,7 +206,7 @@
           "description": "Access modes used for workdir volume"
         },
         "existingClaim": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Name of an already existing claim"
         }
       }
@@ -215,15 +215,15 @@
       "type": "object",
       "properties": {
         "cookieHash": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Cookie hash secret, generated if not present"
         },
         "cookieHashKey": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Key used within secret for cookieHash"
         },
         "cookieEncryption": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Cookie encryption secret, generated if not present"
         },
         "cookieEncryptionKey": {
@@ -231,7 +231,7 @@
           "description": "Key used within secret for cookieEncryption"
         },
         "accesskeyEncryption": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Access key encryption secret, generated if not present"
         },
         "accesskeyEncryptionKey": {
@@ -239,7 +239,7 @@
           "description": "Key used within secret for accesskeyEncryption"
         },
         "existingSecret": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Existing secret to use for secrets"
         }
       }
@@ -248,7 +248,7 @@
       "type": "object",
       "properties": {
         "host": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Host to access Semaphore"
         },
         "gitClient": {
@@ -310,7 +310,7 @@
           "description": "Key used within secret for username"
         },
         "password": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Password for database"
         },
         "passwordKey": {
@@ -318,15 +318,15 @@
           "description": "Key used within secret for password"
         },
         "existingSecret": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Existing secret to use for credentials"
         },
         "host": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Host for database connection"
         },
         "port": {
-          "type": "integer",
+          "type": ["integer", "null"],
           "description": "Port for database connection"
         },
         "name": {
@@ -353,7 +353,7 @@
               "description": "Size for boltdb volume"
             },
             "storageClass": {
-              "type": "string",
+              "type": ["string", "null"],
               "description": "Storage class used for boltdb volume"
             },
             "accessModes": {
@@ -365,7 +365,7 @@
               "description": "Access modes used for boltdb volume"
             },
             "existingClaim": {
-              "type": "string",
+              "type": ["string", "null"],
               "description": "Name of an already existing claim"
             }
           }
@@ -428,4 +428,4 @@
       "description": "Extra environment variables from secrets"
     }
   }
-} 
+}
