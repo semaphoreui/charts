@@ -166,7 +166,7 @@ general:
   useRemoteRunner: false
 
   # -- Path to SSH config
-  sshConfigPath: ~/.ssh/config
+  sshConfigPath:
 
   # -- Additional Python packages
   additionalPythonPackages: []

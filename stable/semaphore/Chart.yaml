@@ -35,4 +35,4 @@ name: semaphore
 sources:
 - https://github.com/semaphoreui/semaphore
 type: application
-version: 15.1.4
+version: 15.1.5

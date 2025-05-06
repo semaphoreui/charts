@@ -196,7 +196,7 @@ oidc:
 | general.maxParallelTasks | int | `0` | Maximum parallel tasks |
 | general.nonAdminCanCreateProject | bool | `false` | Allow non-admins to create projects |
 | general.passwordLoginDisable | bool | `false` | Disable password login |
-| general.sshConfigPath | string | `"~/.ssh/config"` | Path to SSH config |
+| general.sshConfigPath | string | `""` | Path to SSH config |
 | general.tmpPath | string | `"/tmp/semaphore"` | Working directory for Semaphore |
 | general.useRemoteRunner | bool | `false` | Enable usage of remote runners |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
