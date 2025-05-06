@@ -1,6 +1,6 @@
 # Semaphore UI official chart
 
-![Version: 15.1.3](https://img.shields.io/badge/Version-15.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.14.8](https://img.shields.io/badge/AppVersion-2.14.8-informational?style=flat-square)
+![Version: 15.1.4](https://img.shields.io/badge/Version-15.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.14.8](https://img.shields.io/badge/AppVersion-2.14.8-informational?style=flat-square)
 
 Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell and other DevOps tools
 
@@ -49,7 +49,7 @@ admin:
   password: changeme
 ```
 
-After installtion you can login with username `admin` and password `changeme`.
+Now you can login with username `admin` and password `changeme`.
 
 ### Ingress Enabled
 
