@@ -131,8 +131,8 @@ spec:
               value: {{ .Values.general.gitClient | quote }}
             - name: SEMAPHORE_TMP_PATH
               value: {{ .Values.general.tmpPath | quote }}
-            - name: SEMAPHORE_TMP_PATH
-              value: {{ .Values.general.tmpPath | quote }}
+            - name: SEMAPHORE_SSH_PATH
+              value: {{ .Values.general.sshConfigPath | quote }}
             - name: SEMAPHORE_MAX_PARALLEL_TASKS
               value: {{ .Values.general.maxParallelTasks | quote }}
             - name: SEMAPHORE_PASSWORD_LOGIN_DISABLED
