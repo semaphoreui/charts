@@ -343,10 +343,6 @@ runner:
   # -- Existing secret to use for runner
   existingSecret:
 
-billing:
-  # -- Enable billing
-  enabled: false
-
 admin:
   # -- Create an local admin user
   create: false

@@ -36,8 +36,6 @@ data:
       {{- end }}
       "oidc_providers": {{ $providers | toJson }},
       {{- end }}
-      "ssh_config_path": "{{ .Values.general.sshConfigPath }}",
-      "billing_enabled": {{ .Values.billing.enabled }}
     }
 
   {{- if .Values.general.additionalPythonPackages }}
