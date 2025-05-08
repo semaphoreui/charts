@@ -58,6 +58,11 @@ spec:
 {{- end }}
 
     spec:
+      {{- if .Values.dnsConfig }}
+      dnsConfig:
+        {{- toYaml .Values.dnsConfig | nindent 8 }}
+
+      {{- end }}
       serviceAccountName: {{ include "semaphoreui.serviceAccountName" . }}
       {{- if .Values.image.pullSecrets }}
 
