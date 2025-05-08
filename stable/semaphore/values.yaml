@@ -31,6 +31,16 @@ serviceAccount:
   # -- Define annotations for the service account
   annotations: {}
 
+# -- Defines dnsConfig for the deployment
+# dnsConfig:
+  # nameservers:      # List of IPs
+  #   - 1.1.1.1
+  # searches:         # Search domains
+  #   - ns1.svc.cluster.local
+  # options:          # Resolver options
+  #   - name: ndots
+  #     value: "2"
+
 # -- Updaqte strategy for deployment
 updateStrategy:
   type: Recreate
