@@ -34,7 +34,7 @@ data:
         {{- end }}
         {{- $_ := set $providers $provider $config }}
       {{- end }}
-      "oidc_providers": {{ $providers | toJson }},
+      "oidc_providers": {{ $providers | toJson }}
       {{- end }}
     }
 
