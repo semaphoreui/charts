@@ -8,6 +8,11 @@ fullnameOverride: ""
 # -- Replicas for the deployment
 replicaCount: 1
 
+config:
+  # -- List of environment variables to forward into the application environment.
+  # Modify this list if additional environment variables need to be accessible.
+  forwarded_env_vars: []
+
 image:
   # -- Image repository used by deployment
   repository: semaphoreui/semaphore
