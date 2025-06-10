@@ -153,6 +153,7 @@ oidc:
 | admin.usernameKey | string | `"username"` | Key used within secret for username |
 | affinity | object | `{}` | Affinity for the deployment |
 | annotations | object | `{}` | Define additional annotations |
+| config.forwarded_env_vars | list | `[]` | List of environment variables to forward into the application environment. Modify this list if additional environment variables need to be accessible. |
 | database.existingSecret | string | `nil` | Existing secret to use for credentials |
 | database.host | string | `nil` | Host for database connection |
 | database.name | string | `"semaphore"` | Name of the used database |
