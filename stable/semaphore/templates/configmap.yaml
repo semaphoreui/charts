@@ -34,10 +34,10 @@ data:
         {{- end }}
         {{- $_ := set $providers $provider $config }}
       {{- end }}
-      "oidc_providers": {{ $providers | toJson }},
+      "oidc_providers": {{ $providers | toJson }}
       {{- end }}
       {{- if .Values.config.forwarded_env_vars }}
-      "forwarded_env_vars": [
+      ,"forwarded_env_vars": [
         {{- range $index, $val := .Values.config.forwarded_env_vars }}
           {{- if $index }}, {{ end }}"{{ $val }}"
         {{- end }}]
