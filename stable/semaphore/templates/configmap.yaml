@@ -17,30 +17,38 @@ metadata:
 data:
   config.json: |
     {
+      {{- $first := true }}
+
       {{- if .Values.ldap.enable }}
-      "ldap_mappings": {
-        "dn": "{{ .Values.ldap.mappings.dn }}",
-        "mail": "{{ .Values.ldap.mappings.mail }}",
-        "uid": "{{ .Values.ldap.mappings.uid }}",
-        "cn": "{{ .Values.ldap.mappings.cn }}"
-      },
+        "ldap_mappings": {
+          "dn": "{{ .Values.ldap.mappings.dn }}",
+          "mail": "{{ .Values.ldap.mappings.mail }}",
+          "uid": "{{ .Values.ldap.mappings.uid }}",
+          "cn": "{{ .Values.ldap.mappings.cn }}"
+        }
+        {{- $first = false }}
       {{- end }}
+
       {{- if .Values.oidc.enable }}
-      {{- $providers := dict }}
-      {{- range $provider, $values := .Values.oidc.providers }}
-        {{- $config := dict }}
-        {{- range $val := keys $values }}
-          {{- $_ := set $config ($val | snakecase) (get $values $val) }}
+        {{- if not $first }},{{ end }}
+        {{- $providers := dict }}
+        {{- range $provider, $values := .Values.oidc.providers }}
+          {{- $config := dict }}
+          {{- range $val := keys $values }}
+            {{- $_ := set $config ($val | snakecase) (get $values $val) }}
+          {{- end }}
+          {{- $_ := set $providers $provider $config }}
         {{- end }}
-        {{- $_ := set $providers $provider $config }}
+        "oidc_providers": {{ $providers | toJson }}
+        {{- $first = false }}
       {{- end }}
-      "oidc_providers": {{ $providers | toJson }}
-      {{- end }}
+
       {{- if .Values.config.forwarded_env_vars }}
-      ,"forwarded_env_vars": [
-        {{- range $index, $val := .Values.config.forwarded_env_vars }}
-          {{- if $index }}, {{ end }}"{{ $val }}"
-        {{- end }}]
+        {{- if not $first }},{{ end }}
+        "forwarded_env_vars": [
+          {{- range $index, $val := .Values.config.forwarded_env_vars }}
+            {{- if $index }}, {{ end }}"{{ $val }}"
+          {{- end }}]
       {{- end }}
     }
 
