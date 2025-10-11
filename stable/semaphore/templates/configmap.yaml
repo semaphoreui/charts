@@ -49,6 +49,62 @@ data:
           {{- range $index, $val := .Values.config.forwarded_env_vars }}
             {{- if $index }}, {{ end }}"{{ $val }}"
           {{- end }}]
+        {{- $first = false }}
+      {{- end }}
+
+      {{- if or .Values.logging.eventLog.enabled .Values.logging.taskLog.enabled }}
+        {{- if not $first }},{{ end }}
+        "log": {
+          {{- $logFirst := true }}
+          {{- if .Values.logging.eventLog.enabled }}
+          "events": {
+            "enabled": {{ .Values.logging.eventLog.enabled }},
+            {{- if .Values.logging.eventLog.format }}
+            "format": "{{ .Values.logging.eventLog.format }}",
+            {{- end }}
+            "logger": {
+              "filename": "{{ .Values.logging.eventLog.logger.filename }}",
+              "maxsize": {{ .Values.logging.eventLog.logger.maxsize }},
+              "maxage": {{ .Values.logging.eventLog.logger.maxage }},
+              "maxbackups": {{ .Values.logging.eventLog.logger.maxbackups }},
+              "compress": {{ .Values.logging.eventLog.logger.compress }}
+            }
+          }
+          {{- $logFirst = false }}
+          {{- end }}
+          {{- if .Values.logging.taskLog.enabled }}
+            {{- if not $logFirst }},{{ end }}
+          "tasks": {
+            "enabled": {{ .Values.logging.taskLog.enabled }},
+            {{- if .Values.logging.taskLog.format }}
+            "format": "{{ .Values.logging.taskLog.format }}",
+            {{- end }}
+            "logger": {
+              "filename": "{{ .Values.logging.taskLog.logger.filename }}",
+              "maxsize": {{ .Values.logging.taskLog.logger.maxsize }},
+              "maxage": {{ .Values.logging.taskLog.logger.maxage }},
+              "maxbackups": {{ .Values.logging.taskLog.logger.maxbackups }},
+              "compress": {{ .Values.logging.taskLog.logger.compress }}
+            }
+            {{- if .Values.logging.taskResultLogger.filename }}
+            ,
+            "result_logger": {
+              "filename": "{{ .Values.logging.taskResultLogger.filename }}",
+              "maxsize": {{ .Values.logging.taskResultLogger.maxsize }},
+              "maxage": {{ .Values.logging.taskResultLogger.maxage }},
+              "maxbackups": {{ .Values.logging.taskResultLogger.maxbackups }},
+              "compress": {{ .Values.logging.taskResultLogger.compress }}
+            }
+            {{- end }}
+          }
+          {{- end }}
+        }
+        {{- $first = false }}
+      {{- end }}
+
+      {{- if .Values.general.maxTasksPerTemplate }}
+        {{- if not $first }},{{ end }}
+        "max_tasks_per_template": {{ .Values.general.maxTasksPerTemplate }}
       {{- end }}
     }
 
