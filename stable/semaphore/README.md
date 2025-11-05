@@ -134,8 +134,8 @@ oidc:
 
 | Repository | Name | Version |
 |------------|------|---------|
-| oci://registry-1.docker.io/bitnamicharts | mariadb | 20.4.2 |
-| oci://registry-1.docker.io/bitnamicharts | postgresql | 16.6.0 |
+| oci://registry-1.docker.io/bitnamicharts | mariadb | 23.2.2 |
+| oci://registry-1.docker.io/bitnamicharts | postgresql | 18.1.4 |
 
 ## Values
 
