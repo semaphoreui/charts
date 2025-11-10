@@ -14,11 +14,11 @@ dependencies:
 - condition: mariadb.enabled
   name: mariadb
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 20.4.2
+  version: 23.2.2
 - condition: postgresql.enabled
   name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 16.6.0
+  version: 18.1.4
 description: Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell and other DevOps tools
 home: https://semaphoreui.com/
 icon: https://raw.githubusercontent.com/semaphoreui/semaphore/develop/web/public/favicon.svg
