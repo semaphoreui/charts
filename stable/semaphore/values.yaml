@@ -46,7 +46,7 @@ serviceAccount:
   #   - name: ndots
   #     value: "2"
 
-# -- Updaqte strategy for deployment
+# -- Update strategy for deployment
 updateStrategy:
   type: Recreate
 
