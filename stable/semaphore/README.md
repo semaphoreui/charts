@@ -281,4 +281,4 @@ oidc:
 | telegram.token | string | `nil` | Token used for telegram |
 | telegram.tokenKey | string | `"token"` | Key used within secret for token |
 | tolerations | list | `[]` | Tolerations for the deployment |
-| updateStrategy | object | `{"type":"Recreate"}` | Updaqte strategy for deployment |
+| updateStrategy | object | `{"type":"Recreate"}` | Update strategy for deployment |
