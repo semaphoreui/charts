@@ -15,7 +15,7 @@ config:
 
 image:
   # -- Image repository used by deployment
-  repository: semaphoreui/semaphore
+  repository: docker.io/semaphoreui/semaphore
 
   # -- Optional tag for the repository, defaults to app version
   tag: ""
