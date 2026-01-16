@@ -1,5 +1,5 @@
 {{- if .Values.httpRoute.enabled -}}
-{{- $serviceName := print (include "semaphoreui.fullname" .) }}
+{{- $serviceName := include "semaphoreui.fullname" . }}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 
@@ -11,7 +11,7 @@ metadata:
 {{- if .Values.httpRoute.labels }}
     {{- toYaml .Values.httpRoute.labels | nindent 4 }}
 {{- end }}
-{{- if  .Values.httpRoute.annotations }}
+{{- if .Values.httpRoute.annotations }}
   annotations:
     {{- toYaml .Values.httpRoute.annotations | nindent 4 }}
 {{- end }}
@@ -29,12 +29,24 @@ spec:
   {{- end }}
   rules:
     {{- range .Values.httpRoute.rules }}
-    - matches:
+    - {{- if .matches }}
+      matches:
         {{- range .matches }}
-        - path:
+        - {{- if .path }}
+          path:
             type: {{ .path.type | default "PathPrefix" }}
             value: {{ .path.value }}
+          {{- end }}
+          {{- if .headers }}
+          headers:
+            {{- toYaml .headers | nindent 12 }}
+          {{- end }}
+          {{- if .queryParams }}
+          queryParams:
+            {{- toYaml .queryParams | nindent 12 }}
+          {{- end }}
         {{- end }}
+      {{- end }}
       backendRefs:
         - name: {{ $serviceName }}
           port: {{ $.Values.service.port }}
