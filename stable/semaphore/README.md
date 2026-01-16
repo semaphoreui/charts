@@ -219,6 +219,12 @@ oidc:
 | general.sshConfigPath | string | `nil` | Path to SSH config |
 | general.tmpPath | string | `"/tmp/semaphore"` | Working directory for Semaphore |
 | general.useRemoteRunner | bool | `false` | Enable usage of remote runners |
+| httpRoute.annotations | object | `{}` | Additional annotations for the HTTPRoute |
+| httpRoute.enabled | bool | `false` | Enable Gateway API HTTPRoute |
+| httpRoute.hostnames | list | `["example.local"]` | Hostnames for the HTTPRoute |
+| httpRoute.labels | object | `{}` | Additional labels for the HTTPRoute |
+| httpRoute.parentRefs | list | `[{"name":"gateway","namespace":"default"}]` | Parent references (Gateway) for the HTTPRoute |
+| httpRoute.rules | list | `[{"matches":[{"path":{"type":"PathPrefix","value":"/"}}]}]` | Rules for the HTTPRoute |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.pullSecrets | list | `[]` | Optional name of pull secret if using a private registry |
 | image.repository | string | `"semaphoreui/semaphore"` | Image repository used by deployment |
