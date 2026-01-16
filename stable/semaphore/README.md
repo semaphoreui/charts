@@ -64,6 +64,26 @@ ingress:
           pathType: Prefix
 ```
 
+### Gateway API HTTPRoute Enabled
+
+```yml
+httpRoute:
+  enabled: true
+
+  parentRefs:
+    - name: my-gateway
+      namespace: default
+
+  hostnames:
+    - semaphore.example.com
+
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+```
+
 ### Bundled MariaDB
 
 ```console
