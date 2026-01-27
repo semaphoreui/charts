@@ -38,13 +38,13 @@ serviceAccount:
 
 # -- Defines dnsConfig for the deployment
 # dnsConfig:
-  # nameservers:      # List of IPs
-  #   - 1.1.1.1
-  # searches:         # Search domains
-  #   - ns1.svc.cluster.local
-  # options:          # Resolver options
-  #   - name: ndots
-  #     value: "2"
+# nameservers:      # List of IPs
+#   - 1.1.1.1
+# searches:         # Search domains
+#   - ns1.svc.cluster.local
+# options:          # Resolver options
+#   - name: ndots
+#     value: "2"
 
 # -- Update strategy for deployment
 updateStrategy:
@@ -157,6 +157,22 @@ secrets:
 
   # -- Existing secret to use for secrets
   existingSecret:
+
+customCertificates:
+  # -- Enable appending custom CA bundle into ca-certificates.crt for outbound TLS (e.g. on-prem git)
+  enabled: false
+
+  # -- Existing secret containing the CA bundle (required if enabled and no configmap)
+  existingSecret:
+
+  # -- Existing configmap containing the CA bundle (required if enabled and no secret)
+  existingConfigMap:
+
+  # -- Key in secret/configmap that holds the CA bundle
+  key: ca.crt
+
+  # -- Path where the combined CA bundle is mounted (ca-certificates.crt)
+  mountPath: /etc/ssl/certs/ca-certificates.crt
 
 general:
   # -- Host to access Semaphore
@@ -480,5 +496,4 @@ postgresql:
     serviceMonitor:
       # -- Enable service monitor for postgresql
       enabled: false
-
 ...
