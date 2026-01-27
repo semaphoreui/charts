@@ -481,4 +481,60 @@ postgresql:
       # -- Enable service monitor for postgresql
       enabled: false
 
+# Logging configuration (PRO feature 2.10+)
+# Reference: https://docs.semaphoreui.com/administration-guide/logs/#logger-options
+logging:
+  # Event/Activity log configuration
+  eventLog:
+    # -- Enable event logging
+    enabled: false
+    # -- Log format (json or text)
+    format: "json"
+    logger:
+      # -- Log file path
+      filename: "/var/log/semaphore/events.log"
+      # -- Maximum size in megabytes before rotation
+      maxsize: 100
+      # -- Maximum number of days to retain old log files
+      maxage: 90
+      # -- Maximum number of old log files to retain
+      maxbackups: 10
+      # -- Compress rotated log files
+      compress: true
+
+  # Task execution log configuration
+  taskLog:
+    # -- Enable task logging
+    enabled: false
+    # -- Log format (json or text)
+    format: "json"
+    logger:
+      # -- Log file path
+      filename: "/var/log/semaphore/tasks.log"
+      # -- Maximum size in megabytes before rotation
+      maxsize: 100
+      # -- Maximum number of days to retain old log files
+      maxage: 90
+      # -- Maximum number of old log files to retain
+      maxbackups: 10
+      # -- Compress rotated log files
+      compress: true
+
+  # Task results log configuration
+  taskResultLogger:
+    # -- Log file path (set to enable task result logging)
+    filename: ""
+    # -- Maximum size in megabytes before rotation
+    maxsize: 100
+    # -- Maximum number of days to retain old log files
+    maxage: 90
+    # -- Maximum number of old log files to retain
+    maxbackups: 10
+    # -- Compress rotated log files
+    compress: true
+
+general:
+  # -- Maximum tasks to retain per template (0 = unlimited)
+  maxTasksPerTemplate: 0
+
 ...
