@@ -76,9 +76,35 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if or .Values.admin.create .Values.extraInitContainers }}
+      {{- if or .Values.admin.create .Values.extraInitContainers .Values.customCertificates.enabled }}
 
       initContainers:
+        {{- if .Values.customCertificates.enabled }}
+        - name: custom-ca-bundle
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag | default (printf "v%s" .Chart.AppVersion) }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.podSecurityContext }}
+
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+          command:
+            - sh
+            - -c
+            - |
+              set -e
+              cp /etc/ssl/certs/ca-certificates.crt /work/ca-certificates.crt
+              printf '\n' >> /work/ca-certificates.crt
+              cat /custom-ca/{{ .Values.customCertificates.key }} >> /work/ca-certificates.crt
+
+          volumeMounts:
+            - name: custom-ca-src
+              mountPath: /custom-ca
+              readOnly: true
+            - name: custom-ca-bundle
+              mountPath: /work
+        {{- end }}
         {{- if or .Values.admin.create }}
         - name: admin
           image: {{ .Values.image.repository }}:{{ .Values.image.tag | default (printf "v%s" .Chart.AppVersion) }}
@@ -265,6 +291,14 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.secrets.existingSecret | default (printf "%s-general" (include "semaphoreui.fullname" .)) }}
                   key: {{ .Values.secrets.accesskeyEncryptionKey }}
+            {{- if .Values.customCertificates.enabled }}
+            - name: SSL_CERT_FILE
+              value: {{ .Values.customCertificates.mountPath | quote }}
+            - name: REQUESTS_CA_BUNDLE
+              value: {{ .Values.customCertificates.mountPath | quote }}
+            - name: GIT_SSL_CAINFO
+              value: {{ .Values.customCertificates.mountPath | quote }}
+            {{- end }}
           {{- if or .Values.extraEnvSecrets .Values.extraEnvVariables }}
             {{- range $key, $value := .Values.extraEnvSecrets }}
             - name: {{ $key }}
@@ -300,6 +334,12 @@ spec:
             - name: config
               mountPath: /etc/semaphore/config.json
               subPath: config.json
+            {{- if .Values.customCertificates.enabled }}
+            - name: custom-ca-bundle
+              mountPath: {{ .Values.customCertificates.mountPath | quote }}
+              subPath: ca-certificates.crt
+              readOnly: true
+            {{- end }}
             - name: workdir
               mountPath: {{ .Values.general.tmpPath }}
             {{- if eq .Values.database.type "bolt" }}
@@ -470,6 +510,14 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.secrets.existingSecret | default (printf "%s-general" (include "semaphoreui.fullname" .)) }}
                   key: {{ .Values.secrets.accesskeyEncryptionKey }}
+            {{- if .Values.customCertificates.enabled }}
+            - name: SSL_CERT_FILE
+              value: {{ .Values.customCertificates.mountPath | quote }}
+            - name: REQUESTS_CA_BUNDLE
+              value: {{ .Values.customCertificates.mountPath | quote }}
+            - name: GIT_SSL_CAINFO
+              value: {{ .Values.customCertificates.mountPath | quote }}
+            {{- end }}
           {{- if or .Values.extraEnvSecrets .Values.extraEnvVariables }}
             {{- range $key, $value := .Values.extraEnvSecrets }}
             - name: {{ $key }}
@@ -520,6 +568,12 @@ spec:
             - name: config
               mountPath: /etc/semaphore/config.json
               subPath: config.json
+            {{- if .Values.customCertificates.enabled }}
+            - name: custom-ca-bundle
+              mountPath: {{ .Values.customCertificates.mountPath | quote }}
+              subPath: ca-certificates.crt
+              readOnly: true
+            {{- end }}
             - name: workdir
               mountPath: {{ .Values.general.tmpPath }}
             {{- if eq .Values.database.type "bolt" }}
@@ -557,6 +611,20 @@ spec:
         - name: config
           configMap:
             name: {{ include "semaphoreui.fullname" . }}-config
+        {{- if .Values.customCertificates.enabled }}
+        - name: custom-ca-src
+          {{- if .Values.customCertificates.existingSecret }}
+          secret:
+            secretName: {{ .Values.customCertificates.existingSecret }}
+          {{- else if .Values.customCertificates.existingConfigMap }}
+          configMap:
+            name: {{ .Values.customCertificates.existingConfigMap }}
+          {{- else }}
+          {{- required "customCertificates.existingSecret or customCertificates.existingConfigMap is required when customCertificates.enabled=true" "" }}
+          {{- end }}
+        - name: custom-ca-bundle
+          emptyDir: {}
+        {{- end }}
         - name: workdir
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
