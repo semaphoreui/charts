@@ -55,7 +55,7 @@ Now you can login with username `admin` and password `changeme`.
 
 ```yml
 ingress:
-  enabled: false
+  enabled: true
 
   hosts:
     - host: semaphore.example.com
