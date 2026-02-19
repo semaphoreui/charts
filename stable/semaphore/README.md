@@ -55,7 +55,7 @@ Now you can login with username `admin` and password `changeme`.
 
 ```yml
 ingress:
-  enabled: false
+  enabled: true
 
   hosts:
     - host: semaphore.example.com
@@ -110,6 +110,29 @@ postgresql:
 
   auth:
     password: p455w0rd
+```
+
+### External PostgreSQL
+
+```console
+database:
+  type: postgres
+
+  host: postgresql.example.org
+  port: 5432
+  name: semaphore
+  # In case your PostgreSQL is running in the cluster
+  # without TLS, you need to disable the sslmode
+  # options:
+  #   sslmode: disable
+
+  usernameFromSecret: false
+  passwordKey: password
+  existingSecret: postgresql
+
+# disable the bundled PostgreSQL
+postgresql:
+  enabled: false
 ```
 
 ### OpenID Connect
