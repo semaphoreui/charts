@@ -405,6 +405,18 @@ admin:
   # -- Existing secret to use for admin
   existingSecret:
 
+# -- Liveness probe configuration
+livenessProbe:
+  httpGet:
+    path: /api/ping
+    port: http
+
+# -- Readiness probe configuration
+readinessProbe:
+  httpGet:
+    path: /api/ping
+    port: http
+
 # -- Resources for the deployment
 resources:
   limits: {}
