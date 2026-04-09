@@ -64,6 +64,16 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+
+### Custom CA bundle for on-prem Git (appended to ca-certificates.crt)
+
+```yml
+customCertificates:
+  enabled: true
+  existingSecret: my-custom-ca
+  key: ca.crt
+  mountPath: /etc/ssl/certs/ca-certificates.crt
+```
 ```
 
 ### Bundled MariaDB

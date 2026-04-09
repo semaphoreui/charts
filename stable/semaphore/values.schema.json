@@ -163,6 +163,31 @@
           }
         }
       }
+    },
+    "customCertificates": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable appending custom CA bundle into ca-certificates.crt for outbound TLS"
+        },
+        "existingSecret": {
+          "type": ["string", "null"],
+          "description": "Existing secret containing the CA bundle"
+        },
+        "existingConfigMap": {
+          "type": ["string", "null"],
+          "description": "Existing configmap containing the CA bundle"
+        },
+        "key": {
+          "type": "string",
+          "description": "Key in secret/configmap that holds the CA bundle"
+        },
+        "mountPath": {
+          "type": "string",
+          "description": "Path where the combined CA bundle is mounted"
+        }
+      }
     }
   }
 }

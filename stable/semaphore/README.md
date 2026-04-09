@@ -62,6 +62,16 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+
+### Custom CA bundle for on-prem Git (appended to ca-certificates.crt)
+
+```yml
+customCertificates:
+  enabled: true
+  existingSecret: my-custom-ca
+  key: ca.crt
+  mountPath: /etc/ssl/certs/ca-certificates.crt
+```
 ```
 
 ### Bundled MariaDB
@@ -154,6 +164,11 @@ oidc:
 | affinity | object | `{}` | Affinity for the deployment |
 | annotations | object | `{}` | Define additional annotations |
 | config.forwarded_env_vars | list | `[]` | List of environment variables to forward into the application environment. Modify this list if additional environment variables need to be accessible. |
+| customCertificates.enabled | bool | `false` | Enable appending custom CA bundle into ca-certificates.crt for outbound TLS (e.g. on-prem git) |
+| customCertificates.existingConfigMap | string | `nil` | Existing configmap containing the CA bundle (required if enabled and no secret) |
+| customCertificates.existingSecret | string | `nil` | Existing secret containing the CA bundle (required if enabled and no configmap) |
+| customCertificates.key | string | `"ca.crt"` | Key in secret/configmap that holds the CA bundle |
+| customCertificates.mountPath | string | `"/etc/ssl/certs/ca-certificates.crt"` | Path where the combined CA bundle is mounted (ca-certificates.crt) |
 | database.existingSecret | string | `nil` | Existing secret to use for credentials |
 | database.host | string | `nil` | Host for database connection |
 | database.name | string | `"semaphore"` | Name of the used database |
