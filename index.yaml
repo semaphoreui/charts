@@ -12,6 +12,49 @@ entries:
         fingerprint: 2B62F542C0C5614F8B4625AE0DDA0DEB51EF789C
         url: https://raw.githubusercontent.com/semaphoreui/charts/main/semaphore.key
     apiVersion: v2
+    appVersion: 2.18.3
+    created: "2026-05-18T13:36:31.630939349Z"
+    dependencies:
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 23.2.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 18.1.4
+    description: Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell
+      and other DevOps tools
+    digest: a7802961495579054262740908e71effa9d8d5858a15ef187d2de77498b35945
+    home: https://semaphoreui.com/
+    icon: https://raw.githubusercontent.com/semaphoreui/semaphore/develop/web/public/favicon.svg
+    keywords:
+    - ansible
+    - awx
+    - tower
+    - semaphore
+    maintainers:
+    - email: denis@semaphoreui.com
+      name: Denis Gukov
+      url: https://github.com/fiftin
+    name: semaphore
+    sources:
+    - https://github.com/semaphoreui/semaphore
+    type: application
+    urls:
+    - https://github.com/semaphoreui/charts/releases/download/semaphore-16.2.2/semaphore-16.2.2.tgz
+    version: 16.2.2
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |-
+        - name: Source
+          url: https://github.com/semaphoreui/semaphore
+        - name: Chart
+          url: https://github.com/semaphoreui/charts/tree/main/stable/semaphore
+      artifacthub.io/signKey: |
+        fingerprint: 2B62F542C0C5614F8B4625AE0DDA0DEB51EF789C
+        url: https://raw.githubusercontent.com/semaphoreui/charts/main/semaphore.key
+    apiVersion: v2
     appVersion: 2.18.2
     created: "2026-05-18T13:22:19.568672778Z"
     dependencies:
@@ -1551,4 +1594,4 @@ entries:
     urls:
     - https://github.com/semaphoreui/charts/releases/download/semaphoreui-1.0.0/semaphoreui-1.0.0.tgz
     version: 1.0.0
-generated: "2026-05-18T13:22:19.56883304Z"
+generated: "2026-05-18T13:36:31.631235819Z"
