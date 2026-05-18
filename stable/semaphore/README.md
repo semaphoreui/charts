@@ -1,6 +1,6 @@
 # Semaphore UI official chart
 
-![Version: 16.1.2](https://img.shields.io/badge/Version-16.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.17.34](https://img.shields.io/badge/AppVersion-2.17.34-informational?style=flat-square)
+![Version: 16.2.1](https://img.shields.io/badge/Version-16.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.18.2](https://img.shields.io/badge/AppVersion-2.18.2-informational?style=flat-square)
 
 Modern UI and powerful API for Ansible, Terraform, OpenTofu, PowerShell and other DevOps tools
 
