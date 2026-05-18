@@ -7,7 +7,9 @@
       "Bash(kubectl run *)",
       "Bash(kubectl logs *)",
       "Bash(xxd)",
-      "Bash(kubectl delete *)"
+      "Bash(kubectl delete *)",
+      "Bash(helm lint *)",
+      "Bash(helm template *)"
     ]
   }
 }

@@ -1,0 +1,6 @@
+---
+registry: docker.io
+image: semaphoreui/runner
+prerelease: false
+
+...

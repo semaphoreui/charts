@@ -1,0 +1,165 @@
+---
+# -- Override the name
+nameOverride: ""
+
+# -- Override the fullname
+fullnameOverride: ""
+
+# -- Replicas for the deployment
+replicaCount: 1
+
+image:
+  # -- Image repository used by deployment
+  repository: semaphoreui/runner
+
+  # -- Optional tag for the repository, defaults to app version
+  tag: ""
+
+  # -- Image pull policy
+  pullPolicy: IfNotPresent
+
+  # -- Optional name of pull secret if using a private registry
+  pullSecrets: []
+
+serviceAccount:
+  # -- Create a new service account
+  create: true
+
+  # -- Optional name for an existing service account
+  name: ""
+
+  # -- Define annotations for the service account
+  annotations: {}
+
+# -- Defines dnsConfig for the deployment
+# dnsConfig:
+# nameservers:
+#   - 1.1.1.1
+# searches:
+#   - ns1.svc.cluster.local
+# options:
+#   - name: ndots
+#     value: "2"
+
+# -- Update strategy for deployment
+updateStrategy:
+  type: Recreate
+
+# -- Define additional labels
+labels: {}
+
+# -- Define additional annotations
+annotations: {}
+
+# -- Security context for the pod. Leave empty on OpenShift so the restricted-v2 SCC
+# can assign UID/GID/fsGroup from the namespace's allowed range.
+securityContext: {}
+
+# -- Security context for the container
+podSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: ["ALL"]
+  readOnlyRootFilesystem: false
+
+# -- List of extra init containers
+extraInitContainers: []
+
+# -- List of extra sidecar containers
+extraSidecarContainers: []
+
+# -- List of extra volumes
+extraVolumes: []
+
+# -- List of extra volume mounts
+extraVolumeMounts: []
+
+persistence:
+  # -- Enable persistence for runner data directory (/etc/semaphore)
+  enabled: true
+
+  # -- Size for data volume
+  size: 1Gi
+
+  # -- Storage class used for data volume
+  storageClass:
+
+  # -- Access modes used for data volume
+  accessModes:
+    - ReadWriteOnce
+
+  # -- Name of an already existing claim
+  existingClaim:
+
+runner:
+  # -- URL of the Semaphore server (e.g. http://semaphore:3000). When the runner
+  # is deployed in the same namespace as the server, the short Service DNS name works.
+  webRoot: ""
+
+  # -- One-time registration token issued by the Semaphore UI
+  # (Runners → New Runner). Used on first start to register the runner with the server.
+  # Leave empty if you provide an `apiToken` instead, or rely on `existingSecret`.
+  registrationToken: ""
+
+  # -- Key used within the registration secret
+  registrationTokenKey: registration_token
+
+  # -- Persistent runner token returned by the server after registration. Set this
+  # if you've already registered the runner externally and want to skip the
+  # registration step.
+  apiToken: ""
+
+  # -- Key used within the api token secret
+  apiTokenKey: token
+
+  # -- Existing secret holding the registration token and/or api token.
+  # When set, `registrationToken` and `apiToken` are ignored.
+  existingSecret:
+
+  # -- Private key used by the runner for signing. Generated if not provided
+  # and no `existingKeySecret` is set.
+  privateKey: ""
+
+  # -- Key used within the private key secret
+  privateKeyKey: runner.key
+
+  # -- Existing secret holding the runner private key.
+  # When set, `privateKey` is ignored.
+  existingKeySecret:
+
+  # -- Path inside the container where the private key is mounted
+  privateKeyFile: /etc/semaphore/runner.key
+
+  # -- Port the runner listens on
+  port: 3000
+
+# -- Resources for the deployment
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: "1"
+    memory: 1Gi
+
+# -- Node selector for the deployment
+nodeSelector: {}
+
+# -- Affinity for the deployment
+affinity: {}
+
+# -- Tolerations for the deployment
+tolerations: []
+
+# -- List of environment variables from existing secrets
+envFromSecrets: []
+
+# -- List of environment variables from existing configmaps
+envFromConfigMaps: []
+
+# -- Extra environment variables from mapping
+extraEnvVariables: {}
+
+# -- Extra environment variables from secrets
+extraEnvSecrets: {}
+...

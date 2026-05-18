@@ -1,0 +1,30 @@
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |-
+    - name: Source
+      url: https://github.com/semaphoreui/semaphore
+    - name: Chart
+      url: https://github.com/semaphoreui/charts/tree/main/stable/semaphore-runner
+  artifacthub.io/signKey: |
+    fingerprint: 2B62F542C0C5614F8B4625AE0DDA0DEB51EF789C
+    url: https://raw.githubusercontent.com/semaphoreui/charts/main/semaphore.key
+apiVersion: v2
+appVersion: 2.18.2
+description: Remote runner for Semaphore UI — executes tasks dispatched by the Semaphore server
+home: https://semaphoreui.com/
+icon: https://raw.githubusercontent.com/semaphoreui/semaphore/develop/web/public/favicon.svg
+keywords:
+- ansible
+- awx
+- tower
+- semaphore
+- runner
+maintainers:
+- email: denis@semaphoreui.com
+  name: Denis Gukov
+  url: https://github.com/fiftin
+name: semaphore-runner
+sources:
+- https://github.com/semaphoreui/semaphore
+type: application
+version: 0.1.0
