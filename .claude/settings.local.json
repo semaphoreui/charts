@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(kubectl get *)",
+      "Bash(kubectl exec *)",
+      "Bash(jq '.spec.initContainers[] | select\\(.name==\"admin\"\\) | .env')",
+      "Bash(kubectl run *)",
+      "Bash(kubectl logs *)",
+      "Bash(xxd)",
+      "Bash(kubectl delete *)"
+    ]
+  }
+}
