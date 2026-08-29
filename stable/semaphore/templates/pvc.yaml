@@ -8,9 +8,6 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "semaphoreui.labels" . | nindent 4 }}
-{{- if .Values.labels }}
-    {{- toYaml .Values.labels | nindent 4 }}
-{{- end }}
 {{- if  .Values.annotations }}
   annotations:
     {{- toYaml .Values.annotations | nindent 4 }}
@@ -40,9 +37,6 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "semaphoreui.labels" . | nindent 4 }}
-{{- if .Values.labels }}
-    {{- toYaml .Values.labels | nindent 4 }}
-{{- end }}
 {{- if  .Values.annotations }}
   annotations:
     {{- toYaml .Values.annotations | nindent 4 }}
