@@ -1,10 +1,10 @@
-{{- if and (not .Values.database.persistence.existingClaim) (.Values.database.persistence.enabled) (eq .Values.database.type "bolt") }}
+{{- if and (not .Values.database.persistence.existingClaim) (.Values.database.persistence.enabled) (or (eq .Values.database.type "bolt") (eq .Values.database.type "sqlite")) }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 
 metadata:
-  name: {{ include "semaphoreui.fullname" . }}-boltdb
+  name: {{ include "semaphoreui.fullname" . }}-dbfile
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "semaphoreui.labels" . | nindent 4 }}
