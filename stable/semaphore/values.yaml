@@ -203,7 +203,7 @@ general:
   additionalPythonPackages: []
 
 database:
-  # -- Type of database backend
+  # -- Type of database backend. One of "bolt" (deprecated), "sqlite", "mysql", "postgres"
   type: bolt
 
   # -- Read username from secret
@@ -236,20 +236,20 @@ database:
   # -- Options for database connection
   options: {}
 
-  # -- Path for the boltdb
+  # -- Path for the database file (used by the "bolt" and "sqlite" dialects)
   path: /var/lib/semaphore/database.boltdb
 
   persistence:
-    # -- Enable persistence for boltdb
+    # -- Enable persistence for the database file (used by the "bolt" and "sqlite" dialects)
     enabled: true
 
-    # -- Size for boltdb volume
+    # -- Size for the database file volume
     size: 5G
 
-    # -- Storage class used for boltdb volume
+    # -- Storage class used for the database file volume
     storageClass:
 
-    # -- Access modes used for boltdb volume
+    # -- Access modes used for the database file volume
     accessModes:
       - ReadWriteOnce
 

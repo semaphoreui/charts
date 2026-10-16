@@ -32,7 +32,7 @@ spec:
         {{- if and (not .Values.admin.existingSecret) (.Values.admin.create) }}
         checksum/secret-admin: {{ (include (print $.Template.BasePath "/secret-admin.yaml") . | fromYaml).data | toYaml | sha256sum }}
         {{- end }}
-        {{- if and (not .Values.database.existingSecret) (ne .Values.database.type "bolt") }}
+        {{- if and (not .Values.database.existingSecret) (ne .Values.database.type "bolt") (ne .Values.database.type "sqlite") }}
         checksum/secret-database: {{ (include (print $.Template.BasePath "/secret-database.yaml") . | fromYaml).data | toYaml | sha256sum }}
         {{- end }}
         {{- if and (not .Values.email.existingSecret) (.Values.email.alert) }}
@@ -174,7 +174,7 @@ spec:
               value: {{ .Values.general.useRemoteRunner | quote }}
             - name: SEMAPHORE_DB_DIALECT
               value: {{ .Values.database.type | quote }}
-            {{- if eq .Values.database.type "bolt" }}
+            {{- if or (eq .Values.database.type "bolt") (eq .Values.database.type "sqlite") }}
             - name: SEMAPHORE_DB_HOST
               value: {{ .Values.database.path | quote }}
             {{- else }}
@@ -342,8 +342,8 @@ spec:
             {{- end }}
             - name: workdir
               mountPath: {{ .Values.general.tmpPath }}
-            {{- if eq .Values.database.type "bolt" }}
-            - name: boltdb
+            {{- if or (eq .Values.database.type "bolt") (eq .Values.database.type "sqlite") }}
+            - name: dbfile
               mountPath: {{ .Values.database.path | dir }}
             {{- end }}
             {{- if .Values.general.additionalPythonPackages }}
@@ -391,7 +391,7 @@ spec:
               value: {{ .Values.general.useRemoteRunner | quote }}
             - name: SEMAPHORE_DB_DIALECT
               value: {{ .Values.database.type | quote }}
-            {{- if eq .Values.database.type "bolt" }}
+            {{- if or (eq .Values.database.type "bolt") (eq .Values.database.type "sqlite") }}
             - name: SEMAPHORE_DB_HOST
               value: {{ .Values.database.path | quote }}
             {{- else }}
@@ -576,8 +576,8 @@ spec:
             {{- end }}
             - name: workdir
               mountPath: {{ .Values.general.tmpPath }}
-            {{- if eq .Values.database.type "bolt" }}
-            - name: boltdb
+            {{- if or (eq .Values.database.type "bolt") (eq .Values.database.type "sqlite") }}
+            - name: dbfile
               mountPath: {{ .Values.database.path | dir }}
             {{- end }}
             {{- if .Values.general.additionalPythonPackages }}
@@ -632,11 +632,11 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
-        {{- if eq .Values.database.type "bolt" }}
-        - name: boltdb
+        {{- if or (eq .Values.database.type "bolt") (eq .Values.database.type "sqlite") }}
+        - name: dbfile
           {{- if .Values.database.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: {{ .Values.database.persistence.existingClaim | default (printf "%s-boltdb" (include "semaphoreui.fullname" .)) }}
+            claimName: {{ .Values.database.persistence.existingClaim | default (printf "%s-dbfile" (include "semaphoreui.fullname" .)) }}
           {{- else }}
           emptyDir: {}
           {{- end }}
