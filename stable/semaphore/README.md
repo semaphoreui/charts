@@ -74,6 +74,41 @@ customCertificates:
 ```
 ```
 
+### SQLite (recommended lightweight database, replaces the deprecated BoltDB)
+
+```console
+database:
+  type: sqlite
+  path: /var/lib/semaphore/database.sqlite3
+
+  persistence:
+    enabled: true
+    size: 5G
+```
+
+### Migrating from BoltDB
+
+BoltDB is deprecated. If you're running Semaphore **v2.17 or v2.18**, you can migrate your existing data to SQLite (or MySQL/PostgreSQL) with the built-in migration command before switching `database.type`:
+
+```console
+semaphore migrate --from-boltdb /var/lib/semaphore/database.boltdb --config /etc/semaphore/config.json
+```
+
+This imports all projects, templates, inventories, repositories, keys, users, and task history into the new database without modifying the original BoltDB file. Useful flags: `--skip-task-output` (skip migrating task output logs) and `--merge-existing-users` (reuse existing users by username instead of failing on conflicts).
+
+In Kubernetes, you can trigger this automatically on first startup by setting the `SEMAPHORE_MIGRATE_FROM_BOLTDB` environment variable to the in-container path of your existing BoltDB file, via `extraEnvVariables`:
+
+```console
+database:
+  type: sqlite
+  path: /var/lib/semaphore/database.sqlite3
+
+extraEnvVariables:
+  SEMAPHORE_MIGRATE_FROM_BOLTDB: /var/lib/semaphore/database.boltdb
+```
+
+> **Note:** this migration command was removed in Semaphore v2.19. If you're already running v2.19+ without having migrated, you'll need a community tool such as [bolt2json](https://github.com/oncloudops/bolt2json) plus [semaphore-migration](https://github.com/oncloudops/semaphore-migration) to export/convert your BoltDB data manually.
+
 ### Bundled MariaDB
 
 ```console
@@ -175,14 +210,14 @@ oidc:
 | database.options | object | `{}` | Options for database connection |
 | database.password | string | `nil` | Password for database |
 | database.passwordKey | string | `"password"` | Key used within secret for password |
-| database.path | string | `"/var/lib/semaphore/database.boltdb"` | Path for the boltdb |
-| database.persistence.accessModes | list | `["ReadWriteOnce"]` | Access modes used for boltdb volume |
-| database.persistence.enabled | bool | `true` | Enable persistence for boltdb |
+| database.path | string | `"/var/lib/semaphore/database.boltdb"` | Path for the database file (used by the "bolt" and "sqlite" dialects) |
+| database.persistence.accessModes | list | `["ReadWriteOnce"]` | Access modes used for the database file volume |
+| database.persistence.enabled | bool | `true` | Enable persistence for the database file (used by the "bolt" and "sqlite" dialects) |
 | database.persistence.existingClaim | string | `nil` | Name of an already existing claim |
-| database.persistence.size | string | `"5G"` | Size for boltdb volume |
-| database.persistence.storageClass | string | `nil` | Storage class used for boltdb volume |
+| database.persistence.size | string | `"5G"` | Size for the database file volume |
+| database.persistence.storageClass | string | `nil` | Storage class used for the database file volume |
 | database.port | string | `nil` | Port for database connection |
-| database.type | string | `"bolt"` | Type of database backend |
+| database.type | string | `"bolt"` | Type of database backend. One of "bolt" (deprecated), "sqlite", "mysql", "postgres" |
 | database.username | string | `"semaphore"` | Username for database |
 | database.usernameFromSecret | bool | `true` | Read username from secret |
 | database.usernameKey | string | `"username"` | Key used within secret for username |

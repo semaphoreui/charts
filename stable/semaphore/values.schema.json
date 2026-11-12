@@ -86,7 +86,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["bolt", "mysql", "postgres"],
+          "enum": ["bolt", "mysql", "postgres", "sqlite"],
           "description": "Type of database backend"
         },
         "usernameFromSecret": {
