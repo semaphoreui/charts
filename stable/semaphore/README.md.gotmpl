@@ -76,6 +76,26 @@ customCertificates:
 ```
 ```
 
+### Gateway API HTTPRoute Enabled
+
+```yml
+httpRoute:
+  enabled: true
+
+  parentRefs:
+    - name: my-gateway
+      namespace: default
+
+  hostnames:
+    - {{ template "chart.name" . }}.example.com
+
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+```
+
 ### Bundled MariaDB
 
 ```console

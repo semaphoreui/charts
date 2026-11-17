@@ -119,6 +119,32 @@ ingress:
   # -- Additional labels for the ingress
   labels: {}
 
+httpRoute:
+  # -- Enable Gateway API HTTPRoute
+  enabled: false
+
+  # -- Parent references (Gateway) for the HTTPRoute
+  parentRefs:
+    - name: gateway
+      namespace: default
+
+  # -- Hostnames for the HTTPRoute
+  hostnames:
+    - example.local
+
+  # -- Rules for the HTTPRoute
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+
+  # -- Additional annotations for the HTTPRoute
+  annotations: {}
+
+  # -- Additional labels for the HTTPRoute
+  labels: {}
+
 persistence:
   # -- Enable persistence for workdir
   enabled: true
